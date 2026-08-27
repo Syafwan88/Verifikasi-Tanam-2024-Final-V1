@@ -11,6 +11,17 @@
         <link rel="stylesheet" href="css/L.Control.Locate.min.css">
         <link rel="stylesheet" href="css/qgis2web.css">
         <link rel="stylesheet" href="css/fontawesome-all.min.css">
+		
+		 <!-- CSS DASHBOARD BARU -->
+
+    <link rel="stylesheet"
+          href="css/dashboard.css">
+		 <!-- CHART.JS -->
+
+    <script
+        src="https://cdn.jsdelivr.net/npm/chart.js">
+    </script>
+		
         <style>
         html, body, #map {
             width: 100%;
@@ -22,7 +33,407 @@
         <title></title>
     </head>
     <body>
-        <div id="map">
+        <body>
+
+<div class="dashboard">
+
+
+    <!-- =====================================================
+         HEADER
+         ===================================================== -->
+
+    <header class="dashboard-header">
+
+        <div class="brand">
+
+            <div class="brand-icon">
+                🌱
+            </div>
+
+            <div>
+
+                <h1>
+                    DASHBOARD VERIFIKASI TANAM 2024
+                </h1>
+
+                <p>
+                    Monitoring & Analisis Keberhasilan Penanaman
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- FILTER -->
+
+        <div class="filters">
+
+            <select id="filterBlok">
+
+                <option value="ALL">
+                    Semua Blok
+                </option>
+
+            </select>
+
+
+            <select id="filterTim">
+
+                <option value="ALL">
+                    Semua Tim
+                </option>
+
+            </select>
+
+
+            <select id="filterTahun">
+
+                <option value="2024">
+                    2024
+                </option>
+
+            </select>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- =====================================================
+         KARTU STATISTIK
+         ===================================================== -->
+
+    <section class="statistics">
+
+
+        <!-- TOTAL -->
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                📍
+            </div>
+
+            <div>
+
+                <span>
+                    Total Titik
+                </span>
+
+                <strong id="totalTitik">
+                    0
+                </strong>
+
+                <small>
+                    Titik Verifikasi
+                </small>
+
+            </div>
+
+        </div>
+
+
+        <!-- HIDUP -->
+
+        <div class="stat-card hidup">
+
+            <div class="stat-icon">
+                🌿
+            </div>
+
+            <div>
+
+                <span>
+                    Hidup
+                </span>
+
+                <strong id="totalHidup">
+                    0
+                </strong>
+
+                <small id="persenHidup">
+                    0%
+                </small>
+
+            </div>
+
+        </div>
+
+
+        <!-- MATI -->
+
+        <div class="stat-card mati">
+
+            <div class="stat-icon">
+                🍂
+            </div>
+
+            <div>
+
+                <span>
+                    Mati
+                </span>
+
+                <strong id="totalMati">
+                    0
+                </strong>
+
+                <small id="persenMati">
+                    0%
+                </small>
+
+            </div>
+
+        </div>
+
+
+        <!-- TIDAK TERTANAM -->
+
+        <div class="stat-card tidak">
+
+            <div class="stat-icon">
+                🌱
+            </div>
+
+            <div>
+
+                <span>
+                    Tidak Tertanam
+                </span>
+
+                <strong id="totalTidak">
+                    0
+                </strong>
+
+                <small id="persenTidak">
+                    0%
+                </small>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         KONTEN UTAMA
+         ===================================================== -->
+
+    <main class="dashboard-content">
+
+
+        <!-- =================================================
+             PANEL KIRI
+             ================================================= -->
+
+        <aside class="sidebar">
+
+
+            <!-- PERSENTASE -->
+
+            <section class="card">
+
+                <div class="card-title">
+
+                    PERSENTASE KEBERHASILAN (HIDUP)
+
+                </div>
+
+
+                <div
+                    class="success-number"
+                    id="successPercentage"
+                >
+                    0%
+                </div>
+
+
+                <div class="progress">
+
+                    <div
+                        id="successProgress"
+                    ></div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- PIE CHART -->
+
+            <section class="card">
+
+                <div class="card-title">
+
+                    STATUS TANAMAN
+
+                </div>
+
+
+                <div class="chart-container">
+
+                    <canvas
+                        id="statusChart"
+                    ></canvas>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- GRAFIK BIBIT -->
+
+            <section class="card">
+
+                <div class="card-title">
+
+                    JENIS TANAMAN YANG BERTAHAN (HIDUP)
+
+                </div>
+
+
+                <div class="chart-container">
+
+                    <canvas
+                        id="bibitChart"
+                    ></canvas>
+
+                </div>
+
+
+                <small class="chart-note">
+
+                    Grafik menampilkan TOP 9
+                    jenis tanaman dengan status HIDUP
+
+                </small>
+
+            </section>
+
+        </aside>
+
+
+
+        <!-- =================================================
+             PETA
+             ================================================= -->
+
+        <section class="map-section">
+
+            <div class="map-title">
+
+                PETA SEBARAN TITIK VERIFIKASI
+
+            </div>
+
+
+            <div id="map"></div>
+
+        </section>
+
+    </main>
+
+
+
+    <!-- =====================================================
+         TABEL PER BLOK
+         ===================================================== -->
+
+    <section class="card table-card">
+
+        <div class="card-title">
+
+            DATA RINGKASAN PER BLOK
+
+        </div>
+
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>
+                        Blok
+                    </th>
+
+                    <th>
+                        Total Titik
+                    </th>
+
+                    <th>
+                        Hidup
+                    </th>
+
+                    <th>
+                        Mati
+                    </th>
+
+                    <th>
+                        Tidak Tertanam
+                    </th>
+
+                    <th>
+                        Persentase Hidup
+                    </th>
+
+                </tr>
+
+            </thead>
+
+
+            <tbody id="tableBlok">
+
+            </tbody>
+
+        </table>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         FOOTER
+         ===================================================== -->
+
+    <footer>
+
+        Sumber Data :
+        Hasil Verifikasi Tanam 2024
+
+        <span>
+            Sistem Koordinat: WGS 84
+        </span>
+
+    </footer>
+
+
+</div>
+
+
+<!-- =========================================================
+     SCRIPT DATA
+     ========================================================= -->
+
+<!-- PENTING:
+     File data titik harus dipanggil sebelum dashboard.js
+-->
+
+
+
+<!-- SCRIPT DASHBOARD -->
+
+<script src="js/dashboard.js"></script>
+
+
+</body>
         </div>
         <script src="js/qgis2web_expressions.js"></script>
         <script src="js/leaflet.js"></script>
@@ -228,22 +639,140 @@
 			layer.bindPopup(content, { maxHeight: 400 });
         }
 
-        function style_TitikVerifikasiTanam2024_2_0() {
-            return {
-                pane: 'pane_TitikVerifikasiTanam2024_2',
-                radius: 4.0,
-                opacity: 1,
-                color: 'rgba(35,35,35,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1,
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(46,251,10,1.0)',
-                interactive: true,
-            }
-        }
+        function style_TitikVerifikasiTanam2024_2_0(feature) {
+
+    var nilaiHidup =
+        String(feature.properties['Hidup'] ?? '')
+        .trim()
+        .toUpperCase();
+
+    var nilaiMati =
+        String(feature.properties['Mati'] ?? '')
+        .trim()
+        .toUpperCase();
+
+
+    /* =========================================
+       TANAMAN HIDUP
+
+       Hidup = V
+       Mati  = X
+       ========================================= */
+
+    if (
+        nilaiHidup === 'V' &&
+        nilaiMati === 'X'
+    ) {
+
+        return {
+
+            pane: 'pane_TitikVerifikasiTanam2024_2',
+
+            radius: 6,
+
+            opacity: 1,
+
+            color: '#ffffff',
+
+            dashArray: '',
+
+            lineCap: 'round',
+
+            lineJoin: 'round',
+
+            weight: 1.5,
+
+            fill: true,
+
+            fillOpacity: 0.9,
+
+            fillColor: '#35a853',
+
+            interactive: true
+
+        };
+
+    }
+
+
+    /* =========================================
+       TANAMAN MATI
+
+       Hidup = X
+       Mati  = V
+       ========================================= */
+
+    if (
+        nilaiHidup === 'X' &&
+        nilaiMati === 'V'
+    ) {
+
+        return {
+
+            pane: 'pane_TitikVerifikasiTanam2024_2',
+
+            radius: 6,
+
+            opacity: 1,
+
+            color: '#ffffff',
+
+            dashArray: '',
+
+            lineCap: 'round',
+
+            lineJoin: 'round',
+
+            weight: 1.5,
+
+            fill: true,
+
+            fillOpacity: 0.9,
+
+            fillColor: '#dc2626',
+
+            interactive: true
+
+        };
+
+    }
+
+
+    /* =========================================
+       TIDAK TERTANAM
+
+       Kondisi selain dua aturan di atas
+       ========================================= */
+
+    return {
+
+        pane: 'pane_TitikVerifikasiTanam2024_2',
+
+        radius: 6,
+
+        opacity: 1,
+
+        color: '#ffffff',
+
+        dashArray: '',
+
+        lineCap: 'round',
+
+        lineJoin: 'round',
+
+        weight: 1.5,
+
+        fill: true,
+
+        fillOpacity: 0.9,
+
+        fillColor: '#eab308',
+
+        interactive: true
+
+    };
+
+}
         map.createPane('pane_TitikVerifikasiTanam2024_2');
         map.getPane('pane_TitikVerifikasiTanam2024_2').style.zIndex = 402;
         map.getPane('pane_TitikVerifikasiTanam2024_2').style['mix-blend-mode'] = 'normal';
@@ -352,6 +881,110 @@
         map.on("layerremove", function(){
             resetLabels([layer_BatasPetakTanam2024ARR_1]);
         });
+			
+			/* =========================================================
+   LEGENDA STATUS TANAMAN
+   ========================================================= */
+
+var statusLegend =
+    L.control({
+        position: "bottomright"
+    });
+
+
+statusLegend.onAdd =
+    function(map) {
+
+        var div =
+            L.DomUtil.create(
+                "div",
+                "info legend"
+            );
+
+
+        div.style.background =
+            "white";
+
+        div.style.padding =
+            "12px";
+
+        div.style.borderRadius =
+            "8px";
+
+        div.style.boxShadow =
+            "0 2px 8px rgba(0,0,0,.25)";
+
+
+        div.innerHTML = `
+
+            <div style="
+                font-weight:bold;
+                margin-bottom:8px;
+            ">
+                KETERANGAN
+            </div>
+
+
+            <div style="
+                margin:6px 0;
+            ">
+                <span style="
+                    display:inline-block;
+                    width:12px;
+                    height:12px;
+                    background:#35a853;
+                    border-radius:50%;
+                    margin-right:7px;
+                "></span>
+
+                Hidup
+            </div>
+
+
+            <div style="
+                margin:6px 0;
+            ">
+                <span style="
+                    display:inline-block;
+                    width:12px;
+                    height:12px;
+                    background:#dc2626;
+                    border-radius:50%;
+                    margin-right:7px;
+                "></span>
+
+                Mati
+            </div>
+
+
+            <div style="
+                margin:6px 0;
+            ">
+                <span style="
+                    display:inline-block;
+                    width:12px;
+                    height:12px;
+                    background:#eab308;
+                    border-radius:50%;
+                    margin-right:7px;
+                "></span>
+
+                Tidak Tertanam
+            </div>
+
+        `;
+
+
+        return div;
+
+    };
+
+
+statusLegend.addTo(map);
+			
         </script>
+		 <!-- DASHBOARD SCRIPT -->
+
+        <script src="js/dashboard.js"></script>
     </body>
 </html>
