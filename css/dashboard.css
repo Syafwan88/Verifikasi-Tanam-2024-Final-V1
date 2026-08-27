@@ -610,3 +610,619 @@ body {
     }
 
 }
+
+/* =========================================================
+   DASHBOARD VERIFIKASI TANAM 2024
+   FINAL - PENYESUAIAN UKURAN & PROPORSI
+   ========================================================= */
+
+
+/* =========================================================
+   1. DASAR HALAMAN
+   ========================================================= */
+
+html,
+body {
+    margin: 0 !important;
+    padding: 0 !important;
+
+    width: 100% !important;
+    min-height: 100% !important;
+
+    height: auto !important;
+
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+
+    box-sizing: border-box;
+}
+
+
+/* =========================================================
+   2. DASHBOARD UTAMA
+   ========================================================= */
+
+.dashboard {
+    width: 100% !important;
+
+    min-height: 100vh !important;
+    height: auto !important;
+
+    padding: 18px 24px 25px 24px !important;
+
+    box-sizing: border-box;
+
+    overflow: visible !important;
+}
+
+
+/* =========================================================
+   3. HEADER
+   ========================================================= */
+
+.dashboard-header {
+    min-height: 88px !important;
+    height: 88px !important;
+
+    padding: 14px 20px !important;
+
+    box-sizing: border-box;
+
+    display: flex !important;
+    align-items: center !important;
+
+    border-radius: 8px !important;
+}
+
+
+/* Judul dashboard */
+
+.dashboard-header h1 {
+    font-size: 27px !important;
+    line-height: 1.1 !important;
+
+    margin: 0 !important;
+}
+
+
+/* Subjudul */
+
+.dashboard-header p,
+.dashboard-header .subtitle {
+    font-size: 15px !important;
+
+    margin-top: 4px !important;
+}
+
+
+/* Logo header */
+
+.dashboard-header img {
+    width: 55px !important;
+    height: 55px !important;
+
+    max-width: 55px !important;
+    max-height: 55px !important;
+}
+
+
+/* =========================================================
+   4. FILTER DI HEADER
+   ========================================================= */
+
+.dashboard-header select {
+    height: 48px !important;
+
+    min-width: 170px !important;
+
+    padding: 0 14px !important;
+
+    font-size: 14px !important;
+}
+
+
+/* =========================================================
+   5. KARTU STATISTIK
+   ========================================================= */
+
+.statistics {
+    display: grid !important;
+
+    grid-template-columns:
+        repeat(4, minmax(0, 1fr)) !important;
+
+    gap: 14px !important;
+
+    margin-top: 14px !important;
+
+    height: auto !important;
+}
+
+
+/* Kartu statistik */
+
+.stat-card {
+    min-height: 115px !important;
+    height: 115px !important;
+
+    padding: 15px 18px !important;
+
+    border-radius: 10px !important;
+
+    box-sizing: border-box;
+}
+
+
+/* Angka statistik */
+
+.stat-card .value,
+.stat-card .stat-value {
+    font-size: 29px !important;
+
+    line-height: 1.1 !important;
+}
+
+
+/* Label */
+
+.stat-card .label,
+.stat-card .stat-label {
+    font-size: 13px !important;
+}
+
+
+/* Persentase */
+
+.stat-card .percentage,
+.stat-card .stat-percentage {
+    font-size: 13px !important;
+}
+
+
+/* =========================================================
+   6. KONTEN UTAMA
+   ========================================================= */
+
+.dashboard-content {
+    display: grid !important;
+
+    grid-template-columns:
+        31% 69% !important;
+
+    gap: 14px !important;
+
+    margin-top: 14px !important;
+
+    height: auto !important;
+
+    min-height: 0 !important;
+
+    overflow: visible !important;
+}
+
+
+/* =========================================================
+   7. SIDEBAR KIRI
+   ========================================================= */
+
+.sidebar {
+    width: 100% !important;
+
+    height: auto !important;
+
+    display: flex !important;
+
+    flex-direction: column !important;
+
+    gap: 14px !important;
+
+    overflow: visible !important;
+}
+
+
+/* =========================================================
+   8. CARD UMUM
+   ========================================================= */
+
+.card {
+    border-radius: 10px !important;
+
+    box-sizing: border-box;
+
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   9. JUDUL CARD
+   ========================================================= */
+
+.card-header,
+.card-title {
+    min-height: 42px !important;
+
+    height: 42px !important;
+
+    padding: 11px 16px !important;
+
+    font-size: 16px !important;
+
+    box-sizing: border-box;
+}
+
+
+/* =========================================================
+   10. CARD PERSENTASE
+   ========================================================= */
+
+.success-card,
+.percentage-card,
+.success-rate {
+    min-height: 105px !important;
+
+    height: 105px !important;
+}
+
+
+/* Angka persentase */
+
+.success-card .percentage,
+.percentage-card .percentage,
+.success-rate .percentage {
+    font-size: 38px !important;
+
+    line-height: 1.1 !important;
+}
+
+
+/* =========================================================
+   11. PIE CHART
+   ========================================================= */
+
+.chart-card {
+    height: auto !important;
+
+    min-height: 300px !important;
+
+    overflow: hidden !important;
+}
+
+
+/* Area chart */
+
+.chart-container {
+    height: 230px !important;
+
+    min-height: 230px !important;
+
+    padding: 8px 12px !important;
+
+    box-sizing: border-box;
+}
+
+
+/* Canvas chart */
+
+.chart-container canvas {
+    width: 100% !important;
+
+    height: 220px !important;
+
+    max-height: 220px !important;
+}
+
+
+/* Pie khusus */
+
+#statusChart {
+    width: 100% !important;
+
+    height: 220px !important;
+
+    max-height: 220px !important;
+}
+
+
+/* =========================================================
+   12. GRAFIK JENIS BIBIT
+   ========================================================= */
+
+#bibitChart {
+    width: 100% !important;
+
+    height: 250px !important;
+
+    max-height: 250px !important;
+}
+
+
+/* Card grafik bibit */
+
+.bibit-card,
+.plant-type-card,
+.chart-bibit {
+    height: 330px !important;
+
+    min-height: 330px !important;
+
+    overflow: hidden !important;
+}
+
+
+/* =========================================================
+   13. KETERANGAN GRAFIK
+   ========================================================= */
+
+.chart-note {
+    font-size: 12px !important;
+
+    padding: 4px 14px 10px 14px !important;
+}
+
+
+/* =========================================================
+   14. AREA PETA
+   ========================================================= */
+
+.map-section {
+    width: 100% !important;
+
+    height: auto !important;
+
+    min-height: 0 !important;
+
+    overflow: hidden !important;
+
+    border-radius: 10px !important;
+}
+
+
+/* Judul peta */
+
+.map-title {
+    height: 42px !important;
+
+    min-height: 42px !important;
+
+    padding: 11px 16px !important;
+
+    font-size: 16px !important;
+
+    box-sizing: border-box;
+}
+
+
+/* =========================================================
+   15. PETA
+   ========================================================= */
+
+#map {
+    position: relative !important;
+
+    width: 100% !important;
+
+    height: 500px !important;
+
+    min-height: 500px !important;
+
+    max-height: 500px !important;
+
+    top: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    left: auto !important;
+
+    z-index: 1 !important;
+}
+
+
+/* =========================================================
+   16. LEGENDA PETA
+   ========================================================= */
+
+.info.legend {
+    font-size: 13px !important;
+
+    padding: 10px 12px !important;
+
+    line-height: 1.5 !important;
+}
+
+
+/* =========================================================
+   17. TABEL PER BLOK
+   ========================================================= */
+
+.table-card {
+    width: 100% !important;
+
+    height: auto !important;
+
+    min-height: 0 !important;
+
+    margin-top: 14px !important;
+
+    overflow-x: auto !important;
+
+    overflow-y: visible !important;
+}
+
+
+/* Header tabel */
+
+.table-card .card-header {
+    height: 42px !important;
+
+    min-height: 42px !important;
+}
+
+
+/* Tabel */
+
+.table-card table {
+    width: 100% !important;
+
+    border-collapse: collapse !important;
+
+    font-size: 12px !important;
+}
+
+
+/* Sel tabel */
+
+.table-card th,
+.table-card td {
+    padding: 8px 10px !important;
+
+    white-space: nowrap !important;
+}
+
+
+/* =========================================================
+   18. FOOTER
+   ========================================================= */
+
+.dashboard-footer {
+    position: relative !important;
+
+    height: auto !important;
+
+    min-height: 35px !important;
+
+    margin-top: 12px !important;
+
+    bottom: auto !important;
+}
+
+
+/* =========================================================
+   19. DESKTOP BESAR
+   ========================================================= */
+
+@media (min-width: 1400px) {
+
+    .dashboard {
+        padding-left: 28px !important;
+        padding-right: 28px !important;
+    }
+
+    .dashboard-header {
+        height: 92px !important;
+        min-height: 92px !important;
+    }
+
+    #map {
+        height: 520px !important;
+        min-height: 520px !important;
+        max-height: 520px !important;
+    }
+
+}
+
+
+/* =========================================================
+   20. LAPTOP
+   ========================================================= */
+
+@media (max-width: 1200px) {
+
+    .dashboard {
+        padding: 14px !important;
+    }
+
+    .dashboard-header h1 {
+        font-size: 24px !important;
+    }
+
+    .statistics {
+        gap: 10px !important;
+    }
+
+    .stat-card {
+        height: 105px !important;
+        min-height: 105px !important;
+    }
+
+    .stat-card .value,
+    .stat-card .stat-value {
+        font-size: 25px !important;
+    }
+
+    .dashboard-content {
+        grid-template-columns:
+            32% 68% !important;
+    }
+
+    #map {
+        height: 450px !important;
+        min-height: 450px !important;
+        max-height: 450px !important;
+    }
+
+}
+
+
+/* =========================================================
+   21. TABLET / LAYAR KECIL
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+    .dashboard-header {
+        height: auto !important;
+
+        min-height: 80px !important;
+
+        flex-wrap: wrap !important;
+    }
+
+    .statistics {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr)) !important;
+    }
+
+    .dashboard-content {
+        grid-template-columns:
+            1fr !important;
+    }
+
+    #map {
+        height: 450px !important;
+        min-height: 450px !important;
+        max-height: 450px !important;
+    }
+
+}
+
+
+/* =========================================================
+   22. HP
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+    .dashboard {
+        padding: 8px !important;
+    }
+
+    .statistics {
+        grid-template-columns:
+            1fr !important;
+    }
+
+    .dashboard-header h1 {
+        font-size: 20px !important;
+    }
+
+    .dashboard-header p,
+    .dashboard-header .subtitle {
+        font-size: 12px !important;
+    }
+
+    #map {
+        height: 380px !important;
+        min-height: 380px !important;
+        max-height: 380px !important;
+    }
+
+}
