@@ -495,3 +495,117 @@ footer span {
         margin-top: 5px;
     }
 }
+
+/* =========================================================
+   PERBAIKAN LAYOUT DASHBOARD
+   Agar halaman bisa di-scroll ke bawah
+   ========================================================= */
+
+/* Jangan kunci tinggi halaman */
+html,
+body {
+    height: auto !important;
+    min-height: 100% !important;
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+}
+
+/* Container utama dashboard */
+.dashboard {
+    width: 100%;
+    min-height: 100vh !important;
+    height: auto !important;
+    overflow: visible !important;
+    box-sizing: border-box;
+}
+
+/* Header */
+.dashboard-header {
+    min-height: 110px;
+    box-sizing: border-box;
+}
+
+/* Area statistik */
+.statistics {
+    height: auto !important;
+    min-height: 0 !important;
+}
+
+/* Konten utama */
+.dashboard-content {
+    height: auto !important;
+    min-height: 0 !important;
+    overflow: visible !important;
+}
+
+/* Sidebar */
+.sidebar {
+    height: auto !important;
+    overflow: visible !important;
+}
+
+/* Area peta */
+.map-section {
+    height: auto !important;
+    min-height: 0 !important;
+    overflow: visible !important;
+}
+
+/* Peta */
+#map {
+    width: 100% !important;
+    height: 520px !important;
+    min-height: 520px !important;
+    max-height: 520px !important;
+}
+
+/* Card */
+.card {
+    box-sizing: border-box;
+}
+
+/* Tabel jangan memotong isi */
+.table-card {
+    height: auto !important;
+    min-height: 0 !important;
+    overflow: visible !important;
+}
+
+/* Footer */
+.dashboard-footer {
+    position: relative !important;
+    bottom: auto !important;
+    height: auto !important;
+}
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 1200px) {
+
+    .dashboard {
+        width: 100%;
+    }
+
+    #map {
+        height: 480px !important;
+        min-height: 480px !important;
+        max-height: 480px !important;
+    }
+
+}
+
+@media (max-width: 768px) {
+
+    #map {
+        height: 400px !important;
+        min-height: 400px !important;
+        max-height: 400px !important;
+    }
+
+    .dashboard-header {
+        height: auto !important;
+    }
+
+}
