@@ -486,6 +486,98 @@ footer {
 
     max-height: 245px !important;
 }
+			/* =====================================================
+   FULLSCREEN PETA
+   ===================================================== */
+
+/* Tombol fullscreen */
+.map-fullscreen-btn {
+    position: absolute !important;
+    top: 10px;
+    left: 60px;
+
+    width: 40px;
+    height: 40px;
+
+    z-index: 10000 !important;
+
+    background: #ffffff;
+
+    border: 2px solid rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+
+    cursor: pointer;
+
+    font-size: 24px;
+    line-height: 36px;
+
+    text-align: center;
+
+    padding: 0;
+
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.35);
+}
+
+
+/* Efek ketika mouse berada di tombol */
+.map-fullscreen-btn:hover {
+    background: #f4f4f4;
+}
+
+
+/* =====================================================
+   PETA SAAT FULLSCREEN
+   ===================================================== */
+
+#map.map-fullscreen-active {
+
+    position: fixed !important;
+
+    top: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    left: 0 !important;
+
+    width: 100vw !important;
+    height: 100vh !important;
+
+    max-width: none !important;
+    max-height: none !important;
+
+    min-height: 0 !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    z-index: 99999 !important;
+
+    border-radius: 0 !important;
+}
+
+
+/* Sembunyikan scroll dashboard ketika fullscreen */
+body.map-is-fullscreen {
+    overflow: hidden !important;
+}
+
+
+/* Posisi tombol ketika fullscreen */
+#map.map-fullscreen-active .map-fullscreen-btn {
+    top: 15px;
+    left: 60px;
+}
+
+
+/* Pastikan kontrol Leaflet berada di atas peta */
+#map.map-fullscreen-active .leaflet-control {
+    z-index: 1000 !important;
+}
+
+
+/* Legenda tetap di atas peta */
+#map.map-fullscreen-active .info.legend {
+    z-index: 1000 !important;
+}
 
 </style>
         <title></title>
@@ -1410,6 +1502,183 @@ statusLegend.onAdd =
 
 
 statusLegend.addTo(map);
+
+			/* =========================================================
+   FULLSCREEN PETA
+   ========================================================= */
+
+(function () {
+
+    /* Ambil elemen peta */
+    var mapElement = document.getElementById('map');
+
+    /* Pastikan elemen peta ditemukan */
+    if (!mapElement) {
+        console.error('Elemen #map tidak ditemukan.');
+        return;
+    }
+
+
+    /* =====================================================
+       BUAT TOMBOL FULLSCREEN
+       ===================================================== */
+
+    var fullscreenButton = document.createElement('button');
+
+    fullscreenButton.type = 'button';
+
+    fullscreenButton.className = 'map-fullscreen-btn';
+
+    fullscreenButton.innerHTML = '⛶';
+
+    fullscreenButton.title = 'Tampilkan peta layar penuh';
+
+    fullscreenButton.setAttribute(
+        'aria-label',
+        'Tampilkan peta layar penuh'
+    );
+
+
+    /* =====================================================
+       MASUKKAN TOMBOL KE DALAM PETA
+       ===================================================== */
+
+    mapElement.appendChild(fullscreenButton);
+
+
+    /* =====================================================
+       EVENT KLIK
+       ===================================================== */
+
+    fullscreenButton.addEventListener('click', function () {
+
+        var fullscreenAktif =
+            mapElement.classList.contains(
+                'map-fullscreen-active'
+            );
+
+
+        /* =================================================
+           AKTIFKAN FULLSCREEN
+           ================================================= */
+
+        if (!fullscreenAktif) {
+
+            mapElement.classList.add(
+                'map-fullscreen-active'
+            );
+
+            document.body.classList.add(
+                'map-is-fullscreen'
+            );
+
+            fullscreenButton.innerHTML = '✕';
+
+            fullscreenButton.title =
+                'Keluar dari layar penuh';
+
+            fullscreenButton.setAttribute(
+                'aria-label',
+                'Keluar dari layar penuh'
+            );
+
+        }
+
+
+        /* =================================================
+           KELUAR FULLSCREEN
+           ================================================= */
+
+        else {
+
+            mapElement.classList.remove(
+                'map-fullscreen-active'
+            );
+
+            document.body.classList.remove(
+                'map-is-fullscreen'
+            );
+
+            fullscreenButton.innerHTML = '⛶';
+
+            fullscreenButton.title =
+                'Tampilkan peta layar penuh';
+
+            fullscreenButton.setAttribute(
+                'aria-label',
+                'Tampilkan peta layar penuh'
+            );
+
+        }
+
+
+        /* =================================================
+           BERITAHU LEAFLET UKURAN PETA BERUBAH
+           ================================================= */
+
+        setTimeout(function () {
+
+            if (typeof map !== 'undefined') {
+
+                map.invalidateSize();
+
+            }
+
+        }, 300);
+
+    });
+
+
+    /* =====================================================
+       SUPPORT TOMBOL ESC
+       ===================================================== */
+
+    document.addEventListener('keydown', function (event) {
+
+        if (event.key === 'Escape') {
+
+            if (
+                mapElement.classList.contains(
+                    'map-fullscreen-active'
+                )
+            ) {
+
+                mapElement.classList.remove(
+                    'map-fullscreen-active'
+                );
+
+                document.body.classList.remove(
+                    'map-is-fullscreen'
+                );
+
+                fullscreenButton.innerHTML = '⛶';
+
+                fullscreenButton.title =
+                    'Tampilkan peta layar penuh';
+
+                fullscreenButton.setAttribute(
+                    'aria-label',
+                    'Tampilkan peta layar penuh'
+                );
+
+
+                setTimeout(function () {
+
+                    if (typeof map !== 'undefined') {
+
+                        map.invalidateSize();
+
+                    }
+
+                }, 300);
+
+            }
+
+        }
+
+    });
+
+})();
 			
         </script>
 		 <!-- DASHBOARD SCRIPT -->
