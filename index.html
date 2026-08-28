@@ -253,9 +253,11 @@ body {
 #bibitChart {
     width: 100% !important;
 
-    height: 205px !important;
+    height: 245px !important;
 
-    max-height: 205px !important;
+    min-height: 245px !important;
+
+    max-height: 245px !important;
 }
 
 
@@ -420,6 +422,69 @@ footer {
 
         max-height: 350px !important;
     }
+}
+			/* =====================================================
+   PERBAIKAN GRAFIK JENIS TANAMAN
+   ===================================================== */
+
+.card:has(#bibitChart) {
+
+    padding-bottom: 14px !important;
+
+    overflow: visible !important;
+}
+
+
+/* Judul kartu */
+.card:has(#bibitChart) .card-title {
+
+    height: auto !important;
+
+    min-height: 48px !important;
+
+    padding: 9px 12px !important;
+
+    margin: -10px -10px 10px -10px !important;
+
+    line-height: 1.25 !important;
+
+    white-space: normal !important;
+
+    overflow: visible !important;
+
+    display: flex !important;
+
+    align-items: center !important;
+}
+
+
+/* Container grafik */
+.card:has(#bibitChart) .chart-container {
+
+    width: 100% !important;
+
+    height: 245px !important;
+
+    min-height: 245px !important;
+
+    max-height: 245px !important;
+
+    padding-bottom: 5px !important;
+
+    overflow: visible !important;
+}
+
+
+/* Canvas */
+.card:has(#bibitChart) #bibitChart {
+
+    width: 100% !important;
+
+    height: 245px !important;
+
+    min-height: 245px !important;
+
+    max-height: 245px !important;
 }
 
 </style>
